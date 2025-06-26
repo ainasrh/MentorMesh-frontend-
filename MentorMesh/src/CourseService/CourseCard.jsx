@@ -11,8 +11,7 @@ const CourseCard = ({ course }) => {
       <img
         src={course.thumbnail_url}
         alt={`${course.title} Thumbnail`}
-        className="w-full h-48 object-cover"
-      />
+        className="w-full h-48 object-contain rounded mb-4 bg-white mx-auto"  />
       <div className="p-5">
         <h3 className="text-xl font-semibold text-gray-800">{course.title}</h3>
         <p className="text-gray-600 mt-2 text-sm">

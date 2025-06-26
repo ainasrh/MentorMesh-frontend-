@@ -29,8 +29,9 @@ export function Login() {
         formData
       );
 
+    
       const { access_token, refresh_token, user } = response.data;
-
+    
       
       localStorage.setItem("access_token", access_token);
       localStorage.setItem("refresh_token", refresh_token);
@@ -39,7 +40,16 @@ export function Login() {
       
       console.log("Login success", response.data);
       toast.success('login succesfull')
-      navigate("/")
+      if (user.role == "trainer"){
+        navigate('/trainer/')
+
+      }else if(user.role == "admin"){
+        navigate('/admin/')
+
+      }else{
+        navigate("/")
+      }
+      
       
     
     } catch (error) {

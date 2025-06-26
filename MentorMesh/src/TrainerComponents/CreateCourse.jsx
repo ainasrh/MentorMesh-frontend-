@@ -47,7 +47,7 @@ export function CreateCourse() {
       });
       toast.success("✅ Course created successfully!");
       console.log(response.data);
-      navigate('/courses/')
+      navigate('my-courses/')
     } catch (error) {
       console.error("Error creating course:", error?.response?.data || error.message);
       toast.error("❌ Failed to create course");

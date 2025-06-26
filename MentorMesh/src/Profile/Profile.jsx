@@ -47,7 +47,7 @@ export function Profile() {
     
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
-    localStorage.removeItem("user");
+
 
     toast.success("Logout successful");
 
@@ -57,12 +57,14 @@ export function Profile() {
     console.log("Logout error:", err.response?.data || err.message);
     toast.error("Logout failed");
   }
+  
 };
+
   if (isLoading) return <p className="text-center text-white">Loading...</p>;
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white py-10 px-6 bg-purple-100">
-      <div className="max-w-5xl mx-auto bg-[#1f1f1f] rounded-lg shadow-lg p-8">
+    <div className="min-h-screen  text-white py-10 px-6 bg-purple-100">
+      <div className="max-w-5xl mx-auto bg-stone-100 rounded-lg shadow-lg p-8 text-black">
         <h1 className="text-3xl  font-semibold mb-8 border-b border-gray-700 pb-4">
           👤 Profile
         </h1>
@@ -72,7 +74,7 @@ export function Profile() {
             {/* Left: Avatar and Basics */}
             <div className="flex flex-col items-center text-center ">
               <img
-                src={userDetails.avatar}
+                src={userDetails.avatar_url}
                 alt="Avatar"
                 className="w-40 h-40 rounded-full object-cover border-4 border-purple-500 shadow-md"
               />
@@ -84,29 +86,29 @@ export function Profile() {
             </div>
 
             {/* Right: All Details */}
-            <div className="bg-[#2a2a2a] rounded-lg p-6 space-y-4 shadow-inner text-gray-100">
+            <div className="bg-stone-200  rounded-lg p-6 space-y-4 shadow-inner text-black">
               <div>
-                <h3 className="text-lg font-semibold text-gray-300">🆔 User ID</h3>
-                <p>{userDetails.id}</p>
+                <h3 className="text-lg font-semibold ">UserName</h3>
+                <p>{userDetails.username  }</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-300"> First Name</h3>
+                <h3 className="text-lg font-semibold "> First Name</h3>
                 <p>{userDetails.first_name || "—"}</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-300"> Last Name</h3>
+                <h3 className="text-lg font-semibold "> Last Name</h3>
                 <p>{userDetails.last_name || "—"}</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-300">📧 Email</h3>
+                <h3 className="text-lg font-semibold ">📧 Email</h3>
                 <p>{userDetails.email}</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-300">📝 Bio</h3>
+                <h3 className="text-lg font-semibold">📝 Bio</h3>
                 <p>{userDetails.bio || "No bio added yet."}</p>
               </div>
 
@@ -124,7 +126,7 @@ export function Profile() {
                 </button>
 
 
-              <Link to="/change-password"> 
+              <Link to="/changepassword"> 
                 <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md">
                   🔒 Change Password
                 </button>

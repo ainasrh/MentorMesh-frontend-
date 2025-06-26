@@ -35,7 +35,7 @@ export function CreateVideo() {
     const data = new FormData();
     data.append("title", formData.title);
     data.append("course", formData.course);
-    data.append("video", formData.video);
+    data.append("video_url", formData.video);
 
     try {
       const response = await axios.post(`${API_BASE_URL}/course/course-video/`, data, {
@@ -45,13 +45,13 @@ export function CreateVideo() {
         },
       });
 
-      toast.success("🎥 Video created successfully!");
+      toast.success(" Video created successfully!");
       console.log(response.data);
       
     } catch (error) {
       console.error(error.response);
       if (error.response?.data?.permission_error) {
-        toast.error(`🚫 ${error.response.data.permission_error}`);
+        toast.error(`${error.response.data.permission_error}`);
       } else {
         toast.error(error?.response?.data?.message || "❌ Failed to create video");
       }
@@ -62,7 +62,8 @@ export function CreateVideo() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-2xl">
+
         <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
           <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-6 text-white">
             <h1 className="text-2xl font-bold">Upload Course Video</h1>
@@ -82,6 +83,7 @@ export function CreateVideo() {
                 required
               />
             </div>
+            
 
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700">Course ID</label>

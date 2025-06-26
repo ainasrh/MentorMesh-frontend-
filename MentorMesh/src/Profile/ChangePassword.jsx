@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import API_BASE_URL from "../config";
+import { useNavigate } from "react-router-dom";
 
 export function ChangePassword() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ export function ChangePassword() {
     new_password: "",
     confirm_password: "",
   });
+  const navigate=useNavigate()
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,7 +30,7 @@ export function ChangePassword() {
       await axios.post(
         `${API_BASE_URL}/user/change-password/`,
         {
-          current_password: formData.current_password,
+          old_password: formData.current_password,
           new_password: formData.new_password,
         },
         {
@@ -40,9 +42,10 @@ export function ChangePassword() {
 
       toast.success("Password changed successfully!");
       setFormData({ current_password: "", new_password: "", confirm_password: "" });
+      navigate("/profile")
     } catch (err) {
-      console.error(err);
-      toast.error(err.response?.data?.detail || "Failed to change password");
+      console.error(err.response?.data?.error);
+      toast.error(err.response?.data?.error[0] || "Failed to change password");
     }
   };
 

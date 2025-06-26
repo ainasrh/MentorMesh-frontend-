@@ -2,9 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import API_BASE_URL from '../config';
 import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
+import CourseCard from '../CourseService/CourseCard';
+
 
 const Home = () => {
   const aboutRef = useRef(null)
+  const navigate=useNavigate()
   const scroolToAbout = ()=>{
     aboutRef.current?.scrollIntoView({behavior: 'smooth'})
   }
@@ -33,7 +37,7 @@ const Home = () => {
           Unleash your full potential with cutting-edge resources and real-world skill development.
         </p>
 
-        <button  className='mt-10 bg-purple-500 py-2 px-5 mx-2 font-semibold text-white  rounded-lg hover:bg-violet-700  '>Explore</button>
+        <Link to="/courses"><button  className='mt-10 bg-purple-500 py-2 px-5 mx-2 font-semibold text-white  rounded-lg hover:bg-violet-700  '>Explore</button></Link>
         <button onClick={scroolToAbout} className='mt-10 bg-purple-500 py-2 px-5 mx-2 font-semibold text-white  rounded-lg hover:bg-violet-700'>About</button>
       </div>
       
@@ -55,28 +59,10 @@ const Home = () => {
        
 
         
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-5">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-5">
         {trendCourse?.map((course) => (
-          <div key={course.id} className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <img
-              src={course.thumbnail_url}
-              alt={`${course.title} Thumbnail`}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-5">
-              <h3 className="text-xl font-semibold text-gray-800">{course.title}</h3>
-              <p className="text-gray-600 mt-2 text-sm">{course.description.slice(0, 100)}...</p>
-              <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
-                <span>🎓 Beginner</span>
-                <span>📘 20 Lessons</span>
-              </div>
-              <div className="mt-4 flex items-center justify-between">
-                <span className="text-lg font-bold text-blue-600">${course.price || "Free"}</span>
-                <button className="bg-purple-600 text-white px-4 py-1 rounded hover:bg-purple-600 text-sm">Enroll Now →</button>
-              </div>
-            </div>
-          </div>
-        ))}
+            <CourseCard key={course.id} course={course} />
+          ))}
       </div>
         </div>
 
@@ -109,9 +95,9 @@ const Home = () => {
         <li>Earn by Teaching</li>
         <li>Community-Driven Platform</li>
       </ul>
-      <button className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+      {/* <button className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
         Learn More
-      </button>
+      </button> */}
     </div>
 
   </div>
@@ -137,7 +123,7 @@ const Home = () => {
         <li>Access to easy course creation tools</li>
         <li>Build your reputation and followers</li>
       </ul>
-      <button className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+      <button onClick={()=>navigate('/join-as-trainer')} className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
         Join as Trainer
       </button>
     </div>

@@ -6,6 +6,7 @@ import { ResetPassword } from '../src/Authentication/ResetPassword'
 import { Profile } from '../src/Profile/Profile'
 import { UpdateProfile } from '../src/Profile/UpdateProfile'
 import { ChangePassword } from '../src/Profile/ChangePassword'
+import { JoinAsTrainer } from '../src/CourseService/JoinAsTrainer'
 
 export default (
     <>
@@ -17,6 +18,9 @@ export default (
     <Route path='profile/' element={<Profile/>}/>
     <Route path='profile/update/' element={<UpdateProfile/>}/>
     <Route path='changepassword/' element={<ChangePassword/>}/>
+    <Route path='join-as-trainer/' element={<JoinAsTrainer/>}/>
+    
+
 
     
     </>
