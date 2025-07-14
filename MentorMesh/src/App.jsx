@@ -9,6 +9,8 @@ import Footer from './Main-Component/Footer';
 import TrainerRoutes from './TrainerComponents/TrainerRoutes';
 import  AdminRoutes  from './Admin/AdminRoutes';
 import BuyCourse from './Payment_Service/BuyCourse';
+import ChatRoutes from './Chat/ChatRoutes';
+import ChatWidget from './Main-Component/ChatWidget';
 
 
 function App() {
@@ -33,9 +35,11 @@ function App() {
           {TrainerRoutes}
           {AdminRoutes}
           <Route path='buybutton/' element={<BuyCourse/>}/>
+          {ChatRoutes}
+          
         </Routes>
-        
-        
+          <ChatWidget />
+      
       </main>
 
       {!shouldHideNavbar && <Footer />}

@@ -3,8 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import API_BASE_URL from "../config";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setToken,setLoggedUser } from "../store/authSlice";
 
 export function Login() {
+  const dispatch=useDispatch()
+
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,14 +33,18 @@ export function Login() {
         `${API_BASE_URL}/user/login/`,
         formData
       );
-
+      
     
       const { access_token, refresh_token, user } = response.data;
-    
-      
-      localStorage.setItem("access_token", access_token);
+
+      console.log("user",user);
+
+      dispatch(setToken(access_token))
+      dispatch(setLoggedUser(user))
+  
+
       localStorage.setItem("refresh_token", refresh_token);
-      // localStorage.setItem("user", JSON.stringify(user));
+      
 
       
       console.log("Login success", response.data);

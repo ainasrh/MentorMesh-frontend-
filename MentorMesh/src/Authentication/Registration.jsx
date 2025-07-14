@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import API_BASE_URL from "../config";
+import { toast } from "react-toastify";
 
 export function Registration() {
   const [formData, setFormData] = useState({
@@ -30,10 +31,10 @@ export function Registration() {
       const { confirm_password, ...submitData } = formData;
       const response = await axios.post(`${API_BASE_URL}/user/register/`, submitData);
 
-      alert(response.data.message || "Registration successful!");
+      toast.success(response.data.message || "Registration successful!");
       navigate("/login");
     } catch (error) {
-      if (error.response?.data) {
+      if (error.response?.data) { 
         const errData = error.response.data;
         const firstErrorKey = Object.keys(errData)[0];
         setError(errData[firstErrorKey] || "Something went wrong.");
@@ -54,7 +55,7 @@ export function Registration() {
           <h1 className="text-2xl font-bold text-center text-gray-900 mb-5">Register with Email</h1>
 
           {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
-
+    
           <div className="space-y-4">
             <input
               type="email"
@@ -127,3 +128,4 @@ export function Registration() {
     </div>
   );
 }
+  

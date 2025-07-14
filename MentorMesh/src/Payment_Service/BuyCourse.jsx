@@ -11,7 +11,7 @@ function BuyCourse({ userId, courseId, amount }) {
   
   const handleBuy = async () => {
     try {
-      // 1. Create Order
+    
       const res = await axios.post(`${API_BASE_URL}/payment/create-payment/`,{
         user_id: userId,
         course_id: courseId,
@@ -20,7 +20,7 @@ function BuyCourse({ userId, courseId, amount }) {
 
       const { id: order_id, currency, amount: razorAmount } = res.data;
 
-      // 2. Initialize Razorpay Checkout
+  
       const options = {
         key: razorpay_key_id, 
         amount: razorAmount,

@@ -32,7 +32,7 @@ export function AllUsers() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
-      await axios.delete(`${API_BASE_URL}/user/delete/${id}/`, {
+      await axios.delete(`${API_BASE_URL}/user/users/delete/${id}/`, {
         headers: { Authorization: `Bearer ${access_token}` },
       });
       toast.success("User deleted");
